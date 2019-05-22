@@ -1,0 +1,16 @@
+{% extends "pagina/base.html" %}
+{% block content %}
+<div class="row center-xs">
+	<dir class=" col col-lg-6">
+		<div class="boxSingup" style="border: solid; border-color: gray; margin: 12px;">
+			<h2>Sign up</h2>
+			<form method="post">
+				{% csrf_token %}
+				{{ form.as_p }}
+					<button type="submit">Sign up</button>
+			</form>
+		</div>
+	</dir>
+</div>
+     
+{% endblock %}

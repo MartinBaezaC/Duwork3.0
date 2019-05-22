@@ -1,0 +1,128 @@
+{% load staticfiles %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Docentes</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" type="text/css">
+
+	<link rel="stylesheet" href="{% static 'css/base_estilo.css' %}">
+	<link rel="stylesheet" href="{% static 'css/nav_estilo.css' %}">
+</head>
+<body>
+ <div class="container">
+	<nav>
+		<div id="navbar" class="row start-xs">
+			<div  class="col col-lg-2
+							col-md-2
+							col-xs-2">
+				<div class="box">
+					<a selected href="/pagina/inicio">Inicio</a>
+				</div>
+			</div>
+			<div  class="col col-lg-2
+							col-md-2
+							col-xs-2">
+				<div class="box">
+					<a href="/accounts/login">Clases</a>
+				</div>
+			</div>
+			<div  class="col col-lg-2
+							col-md-2
+							col-xs-2">
+				<div class="box">
+					<a href="/pagina/docentes">Docentes</a>
+				</div>
+			</div>
+			<div  class="col col-lg-2
+							col-md-2
+							col-xs-2">
+				<div class="box">
+					<a href="{% url 'logout' %}">Cerrar sesión</a>
+				</div>
+			</div>
+			
+		</div>
+
+		<script>		 
+		window.onscroll = function() {myFunction()};		
+		var navbar = document.getElementById("navbar");		
+		var sticky = navbar.offsetTop;		
+		function myFunction() {
+		  if (window.pageYOffset >= sticky) {
+		    navbar.classList.add("sticky")
+		  } else {
+		    navbar.classList.remove("sticky");
+		  }
+		}
+		</script>
+
+	</nav>
+
+	<header>
+		<div class="row start-xs">		
+			<div class="col col-lg-4
+							col-md-4
+							col-xs-5">
+				<div class="box">
+					<img id="logo" src="{% static "img/duworklogo.png" %}"
+					alt="Aquí estaba el logo">
+				</div>
+			</div>	
+			<div class="col col-lg-6
+							col-md-6
+							col-xs-1">
+				<div class="box">
+					
+				</div>
+			</div>
+			<div class="col col-lg-2
+							col-md-2
+							col-xs-5" style="color: white;">				
+				  Bienvenido, {{ user.username }}!				  
+			</div>
+		</div>
+		<div class="row center-xs">
+			
+			
+		</div>
+	</header>
+	
+	<section class="seccionAlumnoUser"> 
+		<div class="row start-xs">
+			<div class="col col-lg-12">
+				<div class="box">
+					<h2>
+						Docentes :
+					</h2>
+					<div>
+						{% if docentes %}
+					    <ul id="listado" style="text-align: left">
+					    {% for d in docentes %}
+					        <li><a href="#" style=" color: black; background-color: white">{{ d.nombres }},{{ d.apellidos }}</a></li>
+					    {% endfor %}
+					    </ul>
+						{% else %}
+					    <p>No hay docentes registrados.</p>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+		
+	<footer>
+		<div class="row start-xs">
+			<div class="col-xs-4">
+				<div class="boxFooter">
+					<h2>Proyecto DuWork Gestiòn àgil de proyectos</h2>
+				</div>
+			</div>
+		</div>
+	</footer>
+	</div>	
+</body>
+</html>
